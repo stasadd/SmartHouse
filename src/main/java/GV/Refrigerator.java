@@ -5,6 +5,7 @@ public class Refrigerator {
     private int energyUsing;
     private int capacity;
     private int temperature;
+    private int rr;
 
     public Refrigerator(){
         name = "";

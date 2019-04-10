@@ -59,7 +59,7 @@ public class XMLFormController {
     void initialize() {
 
     }
-    public void btnShowWosing(ActionEvent actionEvent)
+    public void btnShowWahsing(ActionEvent actionEvent)
     {
 
     }

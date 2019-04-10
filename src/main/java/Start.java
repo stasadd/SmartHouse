@@ -10,11 +10,11 @@ public class Start extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/loginFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/MainWindowFXML.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setWidth(600);
-        primaryStage.setHeight(500);
+        primaryStage.setWidth(340);
+        primaryStage.setHeight(320);
         primaryStage.setTitle("Login Seller");
         primaryStage.show();
     }

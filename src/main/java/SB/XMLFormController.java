@@ -63,4 +63,12 @@ public class XMLFormController {
     {
 
     }
+
+    public void btnShowAlarm(ActionEvent actionEvent) {
+
+    }
+    public void btnShowRefrigerator(ActionEvent actionEvent)
+    {
+
+    }
 }

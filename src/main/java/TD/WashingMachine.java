@@ -1,10 +1,12 @@
 package TD;
 
-public class WashingMachine {
+import java.io.Serializable;
+
+public class WashingMachine implements Serializable {
     private String name;
     private int capacity;
     private int energyUsing;
-    
+
 
     public WashingMachine() {
         this.name = "";

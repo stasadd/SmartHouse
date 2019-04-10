@@ -9,9 +9,10 @@ public class SmartHome {
     private static String devices = "Devices";
 
     private WashingMachine washingMachine;
-    private Refrigerator refrigerator;
+    public Refrigerator refrigerator;
 
     public SmartHome() {
+        refrigerator = new Refrigerator("Nord", 500, -4);
 
 
     }

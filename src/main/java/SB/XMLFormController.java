@@ -71,23 +71,41 @@ public class XMLFormController {
     void initialize() {
 
     }
-    public void btnShowWahsing(ActionEvent actionEvent)
-    {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
-            XMLFormControllerTable.smartHome = smartHome;
-            Scene scene = new Scene(root);
-            Stage secondStage = new Stage();
-            Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
-            secondStage.setScene(scene);
-            secondStage.initOwner(mainStage);
-            secondStage.initModality(Modality.WINDOW_MODAL);
-            secondStage.setWidth(750);
-            secondStage.setHeight(500);
-            secondStage.setTitle("Table");
-            secondStage.show();
-        }
-        catch (IOException e) {}
+    public void btnShowWahsing(ActionEvent actionEvent) throws IOException {
+        System.out.println("wosing was better");
+        System.out.println(smartHome.refrigerator.getName());
+
+        XMLFormControllerTable.smartHome1 = smartHome;
+        Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
+        Scene scene = new Scene(root);
+        Stage secondStage = new Stage();
+        Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
+        secondStage.setScene(scene);
+        secondStage.initOwner(mainStage);
+        secondStage.initModality(Modality.WINDOW_MODAL);
+        secondStage.setWidth(750);
+        secondStage.setHeight(500);
+        secondStage.setTitle("Table");
+        secondStage.show();
+
+//        try {
+//            Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
+//            //XMLFormControllerTable.smartHome = smartHome;
+//            Scene scene = new Scene(root);
+//            Stage secondStage = new Stage();
+//            Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
+//            secondStage.setScene(scene);
+//            secondStage.initOwner(mainStage);
+//            secondStage.initModality(Modality.WINDOW_MODAL);
+//            secondStage.setWidth(750);
+//            secondStage.setHeight(500);
+//            secondStage.setTitle("Table");
+//            secondStage.show();
+//        }
+//        catch (IOException e) {
+//            System.out.println(e.getMessage());
+//            System.out.println("error");
+//        }
     }
 
     public void btnShowAlarm(ActionEvent actionEvent) {

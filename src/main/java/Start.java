@@ -1,6 +1,3 @@
-import SK.FileLoader;
-import SK.FileSaver;
-import SK.Seller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,14 +21,7 @@ public class Start extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("krya");
-//        try {
-//            FileSaver.saveSeller(new Seller("admin", "admin"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
+        System.out.println("success");
         launch(args);
     }
 }

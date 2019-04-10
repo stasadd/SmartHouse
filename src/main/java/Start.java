@@ -13,8 +13,8 @@ public class Start extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/MainWindowFXML.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setWidth(370);
-        primaryStage.setHeight(350);
+        primaryStage.setWidth(340);
+        primaryStage.setHeight(320);
         primaryStage.setTitle("Login Seller");
         primaryStage.show();
     }

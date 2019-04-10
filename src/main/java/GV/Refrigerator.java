@@ -5,13 +5,19 @@ public class Refrigerator {
     private int energyUsing;
     private int capacity;
     private int temperature;
-    private int rr;
 
     public Refrigerator(){
         name = "";
         energyUsing = 0;
         capacity = 0;
         temperature = 0;
+    }
+
+    public Refrigerator(String name, int capacity, int temperature){
+        this.name = name;
+        this.capacity = capacity;
+        this.temperature = temperature;
+        this.energyUsing = 0;
     }
 
     public String getName(){

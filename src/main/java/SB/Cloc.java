@@ -16,7 +16,7 @@ public class Cloc {
         clocAlarm = new Date();
         energyUsing = 0;
         capacity = 0;
-        System.out.println("HI");
+        
     }
 
     public String getName() {return name;}

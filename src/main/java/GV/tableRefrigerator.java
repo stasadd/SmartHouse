@@ -8,9 +8,9 @@ import javafx.scene.control.TableView;
 
 
 public class tableRefrigerator {
-    TableView<Refrigerator> refrigerators;
+    private TableView<Refrigerator> refrigerators;
 
-    public void createTableRefrigerator(){
+    public tableRefrigerator(){
         refrigerators = new TableView<Refrigerator>();
         TableColumn<Refrigerator,String> nameCol = new TableColumn<Refrigerator, String>("Name");
         TableColumn<Refrigerator,String> energyUsingCol = new TableColumn<Refrigerator, String>("EnergyUsing");
@@ -24,6 +24,8 @@ public class tableRefrigerator {
         refrigerators.setItems(list);
         refrigerators.getColumns().addAll(nameCol,energyUsingCol,capacityCol,temperatureCol);
     }
+
+    public TableView<Refrigerator> getRefrigerators(){return this.refrigerators;}
 
     private ObservableList<Refrigerator> getRefrigeratorList() {
 

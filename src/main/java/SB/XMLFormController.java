@@ -1,14 +1,25 @@
 package SB;
 
+import TD.SmartHome;
+import TD.XMLFormControllerTable;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class XMLFormController {
+
+    public static SmartHome smartHome;
 
     @FXML
     private ResourceBundle resources;
@@ -33,6 +44,7 @@ public class XMLFormController {
 
     @FXML
     private Label TextName5;
+
 
     @FXML
     private JFXButton ButtonAlarm;
@@ -59,9 +71,23 @@ public class XMLFormController {
     void initialize() {
 
     }
-    public void btnShowWosing(ActionEvent actionEvent)
+    public void btnShowWahsing(ActionEvent actionEvent)
     {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
+            XMLFormControllerTable.smartHome = smartHome;
+            Scene scene = new Scene(root);
+            Stage secondStage = new Stage();
+            Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
+            secondStage.setScene(scene);
+            secondStage.initOwner(mainStage);
+            secondStage.initModality(Modality.WINDOW_MODAL);
+            secondStage.setWidth(750);
+            secondStage.setHeight(500);
+            secondStage.setTitle("Table");
+            secondStage.show();
+        }
+        catch (IOException e) {}
     }
 
     public void btnShowAlarm(ActionEvent actionEvent) {

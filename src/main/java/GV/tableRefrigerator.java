@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 public class tableRefrigerator {
     private TableView<Refrigerator> refrigerators;
 
-    public tableRefrigerator(){
+    public tableRefrigerator(Refrigerator ref){
         refrigerators = new TableView<Refrigerator>();
         TableColumn<Refrigerator,String> nameCol = new TableColumn<Refrigerator, String>("Name");
         TableColumn<Refrigerator,Integer> energyUsingCol = new TableColumn<Refrigerator, Integer>("EnergyUsing");
@@ -20,18 +20,10 @@ public class tableRefrigerator {
         energyUsingCol.setCellValueFactory(new PropertyValueFactory<Refrigerator, Integer>("energyUsing"));
         capacityCol.setCellValueFactory(new PropertyValueFactory<Refrigerator, Integer>("capacity"));
         temperatureCol.setCellValueFactory(new PropertyValueFactory<Refrigerator, Integer>("temperature"));
-        ObservableList<Refrigerator> list = getRefrigeratorList();
+        ObservableList<Refrigerator> list = FXCollections.observableArrayList(ref);
         refrigerators.setItems(list);
         refrigerators.getColumns().addAll(nameCol,energyUsingCol,capacityCol,temperatureCol);
     }
 
     public TableView<Refrigerator> getRefrigerators(){return this.refrigerators;}
-
-    private ObservableList<Refrigerator> getRefrigeratorList() {
-
-        Refrigerator refrigerator = new Refrigerator("Холодильник",500,-20);
-
-        ObservableList<Refrigerator> list = FXCollections.observableArrayList(refrigerator);
-        return list;
-    }
 }

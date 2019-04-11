@@ -133,6 +133,22 @@ public class SmartHome {
             System.out.println(ex.getMessage());
         }
 
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\cooker.ser")))
+        {
+            oos.writeObject(cooker);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\coffeemaker.ser")))
+        {
+            oos.writeObject(coffeemaker);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     private void checkDirExists(String dirName){

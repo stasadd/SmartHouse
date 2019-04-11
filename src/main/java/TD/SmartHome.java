@@ -19,8 +19,27 @@ public class SmartHome {
     public Cooker cooker;
     public Сoffeemaker coffeemaker;
 
+    Runnable myRunnable = new Runnable(){
+        @Override
+        public void run() {
+            while (true) {
+                try{
+                    save();
+                    Thread.sleep(60000);
+                }
+                catch(InterruptedException e){
+                    System.out.println("runnable error");
+                }
+            }
+        }
+    };
+
+    Thread thread = new Thread(myRunnable);
+
     public SmartHome() {
         load();
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void load() {
@@ -156,5 +175,8 @@ public class SmartHome {
         if(!file.exists())
             file.mkdir();
     }
+
+
+
 
 }

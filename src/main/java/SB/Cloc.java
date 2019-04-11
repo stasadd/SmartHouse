@@ -1,8 +1,9 @@
 package SB;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Cloc  {
+public class Cloc implements Serializable {
     private String name;
     private Date clocDateNow;
     private Date clocAlarm;
@@ -16,7 +17,7 @@ public class Cloc  {
         clocAlarm = new Date();
         energyUsing = 0;
         capacity = 0;
-        System.out.println("HI");
+
     }
 
     public String getName() {return name;}

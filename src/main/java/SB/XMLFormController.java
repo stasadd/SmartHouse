@@ -115,4 +115,21 @@ public class XMLFormController {
     {
 
     }
+    public void btnShowCoffe(ActionEvent actionEvent)
+    {
+
+    }
+    public void btnShowStove(ActionEvent actionEvent)
+    {
+
+    }
+    public void btnShowСonditioner(ActionEvent actionEvent)
+    {
+
+    }
+    public void btnShowTurnoff(ActionEvent actionEvent)
+    {
+
+    }
+
 }

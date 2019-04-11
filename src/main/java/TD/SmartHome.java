@@ -1,6 +1,8 @@
 package TD;
 
+import GV.Cooker;
 import GV.Refrigerator;
+import GV.Сoffeemaker;
 import SB.Cloc;
 import SB.Сonditioner;
 
@@ -14,9 +16,30 @@ public class SmartHome {
     public WashingMachine washingMachine;
     public Cloc clock;
     public Сonditioner conditioner;
+    public Cooker cooker;
+    public Сoffeemaker coffeemaker;
+
+    Runnable myRunnable = new Runnable(){
+        @Override
+        public void run() {
+            while (true) {
+                try{
+                    save();
+                    Thread.sleep(60000);
+                }
+                catch(InterruptedException e){
+                    System.out.println("runnable error");
+                }
+            }
+        }
+    };
+
+    Thread thread = new Thread(myRunnable);
 
     public SmartHome() {
         load();
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void load() {
@@ -44,9 +67,53 @@ public class SmartHome {
             refrigerator = new Refrigerator("Nord", 500, -4);
         }
 
-        clock = new Cloc("Alarm", 10);
-        conditioner = new Сonditioner("Samsung", 50);
+        if(new File(devicesDir + "\\clock.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\clock.ser"))) {
+                clock = (Cloc) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            clock = new Cloc("Alarm", 10);
+        }
 
+        if(new File(devicesDir + "\\conditioner.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\conditioner.ser"))) {
+                conditioner = (Сonditioner) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            conditioner = new Сonditioner("Samsung", 50);
+        }
+
+        if(new File(devicesDir + "\\cooker.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\cooker.ser"))) {
+                cooker = (Cooker) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            cooker = new Cooker("Кухонна плита",40,140);
+        }
+
+        if(new File(devicesDir + "\\coffeemaker.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\coffeemaker.ser"))) {
+                coffeemaker = (Сoffeemaker) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            coffeemaker = new Сoffeemaker("Кавоварка",15);
+        }
     }
 
     public void save() {
@@ -69,6 +136,38 @@ public class SmartHome {
             System.out.println(ex.getMessage());
         }
 
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\clock.ser")))
+        {
+            oos.writeObject(clock);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\conditioner.ser")))
+        {
+            oos.writeObject(conditioner);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\cooker.ser")))
+        {
+            oos.writeObject(cooker);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\coffeemaker.ser")))
+        {
+            oos.writeObject(coffeemaker);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     private void checkDirExists(String dirName){
@@ -76,5 +175,8 @@ public class SmartHome {
         if(!file.exists())
             file.mkdir();
     }
+
+
+
 
 }

@@ -15,9 +15,9 @@ public class Start extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/MainWindowFXML.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setWidth(400);
+        primaryStage.setWidth(450);
         primaryStage.setHeight(400);
-        primaryStage.setTitle("Login Seller");
+        primaryStage.setTitle("Smart home");
         primaryStage.show();
     }
 

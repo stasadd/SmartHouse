@@ -5,8 +5,8 @@ import java.util.Date;
 
 public class Сonditioner implements Serializable {
     private String name;
-    private Date clocDateNow;
-    private int tempetature;
+    private transient Date clocDateNow;
+    private transient int tempetature;
     private int energyUsing;
     private int capacity;
 

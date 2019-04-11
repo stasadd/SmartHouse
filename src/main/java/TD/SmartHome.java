@@ -1,6 +1,8 @@
 package TD;
 
+import GV.Cooker;
 import GV.Refrigerator;
+import GV.Сoffeemaker;
 import SB.Cloc;
 import SB.Сonditioner;
 
@@ -14,6 +16,8 @@ public class SmartHome {
     public WashingMachine washingMachine;
     public Cloc clock;
     public Сonditioner conditioner;
+    public Cooker cooker;
+    public Сoffeemaker coffeemaker;
 
     public SmartHome() {
         load();
@@ -68,6 +72,29 @@ public class SmartHome {
             conditioner = new Сonditioner("Samsung", 50);
         }
 
+        if(new File(devicesDir + "\\cooker.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\cooker.ser"))) {
+                cooker = (Cooker) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            cooker = new Cooker("Кухонна плита",40,140);
+        }
+
+        if(new File(devicesDir + "\\coffeemaker.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\coffeemaker.ser"))) {
+                coffeemaker = (Сoffeemaker) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            coffeemaker = new Сoffeemaker("Кавоварка",15);
+        }
     }
 
     public void save() {

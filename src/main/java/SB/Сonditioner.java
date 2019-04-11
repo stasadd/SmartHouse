@@ -18,6 +18,14 @@ public class Сonditioner implements Serializable {
         capacity = 0;
     }
 
+    public Сonditioner(String name, int capacity) {
+        this.name = name;
+        this.clocDateNow = new Date();
+        this.tempetature = 0;
+        this.energyUsing = 0;
+        this.capacity = capacity;
+    }
+
     public String getName() {
         return name;
     }

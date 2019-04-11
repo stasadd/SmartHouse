@@ -1,6 +1,8 @@
 package GV;
 
-public class Refrigerator {
+import java.io.Serializable;
+
+public class Refrigerator implements Serializable {
     private String name;
     private int energyUsing;
     private int capacity;

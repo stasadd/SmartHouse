@@ -21,6 +21,7 @@ public class XMLFormController {
 
     public static SmartHome smartHome;
 
+
     @FXML
     private ResourceBundle resources;
 
@@ -72,64 +73,54 @@ public class XMLFormController {
 
     }
     public void btnShowWahsing(ActionEvent actionEvent) throws IOException {
-        System.out.println("wosing was better");
-        System.out.println(smartHome.refrigerator.getName());
+        XMLFormControllerTable.index = 2;
+        loadTable("Washing machine");
+    }
 
-        XMLFormControllerTable.smartHome1 = smartHome;
+    public void btnShowAlarm(ActionEvent actionEvent) throws IOException {
+        XMLFormControllerTable.index = 1;
+        loadTable("Clock");
+    }
+
+    public void btnShowRefrigerator(ActionEvent actionEvent) throws IOException {
+        XMLFormControllerTable.index = 4;
+        loadTable("Refrigerator");
+    }
+
+    public void btnShowCoffe(ActionEvent actionEvent) throws IOException {
+        XMLFormControllerTable.index = 3;
+        loadTable("Coffe machine");
+    }
+
+    public void btnShowStove(ActionEvent actionEvent) throws IOException {
+        XMLFormControllerTable.index = 5;
+        loadTable("Stove");
+    }
+
+    public void btnShowСonditioner(ActionEvent actionEvent) throws IOException {
+        XMLFormControllerTable.index = 6;
+        loadTable("Air conditioning");
+    }
+
+    public void btnShowTurnoff(ActionEvent actionEvent){
+
+    }
+
+    private void loadTable(String title) throws IOException {
+        if(title == null)
+            title = "Table";
+
+        XMLFormControllerTable.smartHome = smartHome;
         Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
         Scene scene = new Scene(root);
         Stage secondStage = new Stage();
         Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
         secondStage.setScene(scene);
         secondStage.initOwner(mainStage);
-        secondStage.initModality(Modality.WINDOW_MODAL);
         secondStage.setWidth(750);
         secondStage.setHeight(500);
-        secondStage.setTitle("Table");
+        secondStage.setTitle(title);
         secondStage.show();
-
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource("/forTableFXML.fxml"));
-//            //XMLFormControllerTable.smartHome = smartHome;
-//            Scene scene = new Scene(root);
-//            Stage secondStage = new Stage();
-//            Stage mainStage = (Stage) ButtonWashing.getScene().getWindow();
-//            secondStage.setScene(scene);
-//            secondStage.initOwner(mainStage);
-//            secondStage.initModality(Modality.WINDOW_MODAL);
-//            secondStage.setWidth(750);
-//            secondStage.setHeight(500);
-//            secondStage.setTitle("Table");
-//            secondStage.show();
-//        }
-//        catch (IOException e) {
-//            System.out.println(e.getMessage());
-//            System.out.println("error");
-//        }
-    }
-
-    public void btnShowAlarm(ActionEvent actionEvent) {
-
-    }
-    public void btnShowRefrigerator(ActionEvent actionEvent)
-    {
-
-    }
-    public void btnShowCoffe(ActionEvent actionEvent)
-    {
-
-    }
-    public void btnShowStove(ActionEvent actionEvent)
-    {
-
-    }
-    public void btnShowСonditioner(ActionEvent actionEvent)
-    {
-
-    }
-    public void btnShowTurnoff(ActionEvent actionEvent)
-    {
-
     }
 
 }

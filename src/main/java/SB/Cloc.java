@@ -17,7 +17,14 @@ public class Cloc implements Serializable {
         clocAlarm = new Date();
         energyUsing = 0;
         capacity = 0;
+    }
 
+    public Cloc(String name, int capacity) {
+        this.name = name;
+        this.clocDateNow = new Date();
+        this.clocAlarm = new Date();
+        this.energyUsing = 0;
+        this.capacity = capacity;
     }
 
     public String getName() {return name;}

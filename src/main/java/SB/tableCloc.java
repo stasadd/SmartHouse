@@ -9,10 +9,10 @@ import javafx.scene.control.TableView;
 import java.util.Date;
 
 public class tableCloc {
-    private TableView<Cloc> refrigerators;
+    private TableView<Cloc> table;
 
     public tableCloc(Cloc ref){
-        refrigerators = new TableView<Cloc>();
+        table = new TableView<Cloc>();
         TableColumn<Cloc,String> nameCol = new TableColumn<Cloc, String>("Name");
         TableColumn<Cloc,Integer> energyUsingCol = new TableColumn<Cloc, Integer>("EnergyUsing");
         TableColumn<Cloc,Integer> capacityCol = new TableColumn<Cloc, Integer>("Capacity");
@@ -25,9 +25,9 @@ public class tableCloc {
         DateCol.setCellValueFactory(new PropertyValueFactory<Cloc, Date>("clocDateNow"));
         AlarmCol.setCellValueFactory(new PropertyValueFactory<Cloc, Date>("clocAlarm"));
         ObservableList<Cloc> list = FXCollections.observableArrayList(ref);
-        refrigerators.setItems(list);
-        refrigerators.getColumns().addAll(nameCol,energyUsingCol,capacityCol,DateCol,AlarmCol);
+        table.setItems(list);
+        table.getColumns().addAll(nameCol,energyUsingCol,capacityCol,DateCol,AlarmCol);
     }
 
-    public TableView<Cloc> getRefrigerators(){return this.refrigerators;}
+    public TableView<Cloc> getTable(){return this.table;}
 }

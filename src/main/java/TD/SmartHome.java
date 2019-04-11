@@ -44,8 +44,29 @@ public class SmartHome {
             refrigerator = new Refrigerator("Nord", 500, -4);
         }
 
-        clock = new Cloc("Alarm", 10);
-        conditioner = new Сonditioner("Samsung", 50);
+        if(new File(devicesDir + "\\clock.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\clock.ser"))) {
+                clock = (Cloc) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            clock = new Cloc("Alarm", 10);
+        }
+
+        if(new File(devicesDir + "\\conditioner.ser").exists()) {
+            try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\conditioner.ser"))) {
+                conditioner = (Сonditioner) ois.readObject();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            conditioner = new Сonditioner("Samsung", 50);
+        }
 
     }
 
@@ -64,6 +85,22 @@ public class SmartHome {
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\refrigerator.ser")))
         {
             oos.writeObject(refrigerator);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\clock.ser")))
+        {
+            oos.writeObject(clock);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(devicesDir + "\\conditioner.ser")))
+        {
+            oos.writeObject(conditioner);
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());

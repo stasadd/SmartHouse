@@ -2,9 +2,15 @@ package TD;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class tableWashingMachine {
     private TableView<WashingMachine> table;
@@ -29,8 +35,35 @@ public class tableWashingMachine {
         sizeCol.getColumns().addAll(heightCol, widthCol, thicknessCol);
 
         nameCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, String>("name"));
+        nameCol.setCellFactory(TextFieldTableCell.<WashingMachine> forTableColumn());
+        nameCol.setMinWidth(200);
+        nameCol.setOnEditCommit((TableColumn.CellEditEvent<WashingMachine, String> event) -> {
+            TablePosition<WashingMachine, String> pos = event.getTablePosition();
+
+            String newFullName = event.getNewValue();
+
+            int row = pos.getRow();
+            WashingMachine washingMachine = event.getTableView().getItems().get(row);
+
+            washingMachine.setName(newFullName);
+        });
+
+
         capacityCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("capacity"));
+
         energyUsingCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("energyUsing"));
+        energyUsingCol.setCellFactory(TextFieldTableCell.<WashingMachine,Integer> forTableColumn(new IntegerStringConverter()));
+        energyUsingCol.setOnEditCommit((TableColumn.CellEditEvent<WashingMachine, Integer> event) -> {
+            TablePosition<WashingMachine, Integer> pos = event.getTablePosition();
+
+            Integer newFullName = event.getNewValue();
+
+            int row = pos.getRow();
+            WashingMachine washingMachine = event.getTableView().getItems().get(row);
+
+            washingMachine.setEnergyUsing(newFullName);
+        });
+
         maxWeightOfThingsCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("maxWeightOfThings"));
         waterUsingCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("waterUsing"));
         countOfProgramsCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("countOfPrograms"));
@@ -46,5 +79,9 @@ public class tableWashingMachine {
 
     public TableView<WashingMachine> getTable() {
         return table;
+    }
+
+    public static <S> Callback<TableColumn<S,String>, TableCell<S,String>> forTableColumn(DefaultStringConverter defaultStringConverter) {
+        return forTableColumn(new DefaultStringConverter());
     }
 }

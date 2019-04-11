@@ -25,7 +25,7 @@ public class SmartHome {
             while (true) {
                 try{
                     save();
-                    Thread.sleep(60000);
+                    Thread.sleep(15000);
                 }
                 catch(InterruptedException e){
                     System.out.println("runnable error");
@@ -46,13 +46,15 @@ public class SmartHome {
         if(new File(devicesDir + "\\washing.ser").exists()) {
             try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\washing.ser"))) {
                 washingMachine = (WashingMachine) ois.readObject();
+                washingMachine.threadCreate();
             }
             catch(Exception ex){
+                System.out.println("washing error");
                 System.out.println(ex.getMessage());
             }
         }
         else {
-            washingMachine = new WashingMachine("Samsung", 69, 6, 38, 15, 62.5, 83.7, 59.5, 42.5);
+            washingMachine = new WashingMachine("WHIRLPOOL", 69, 6, 38, 15, 62.5, 83.7, 59.5, 42.5);
         }
 
         if(new File(devicesDir + "\\refrigerator.ser").exists()) {
@@ -175,8 +177,5 @@ public class SmartHome {
         if(!file.exists())
             file.mkdir();
     }
-
-
-
 
 }

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import GV.tableRefrigerator;
+import GV.tableCooker;
+import GV.tableCoffemaker;
 import SB.tableCloc;
 import SB.tableConditioner;
 import javafx.fxml.FXML;
@@ -46,6 +48,12 @@ public class XMLFormControllerTable {
                 break;
             }
             case 3: {
+                tableCoffemaker table = new tableCoffemaker(smartHome.coffeemaker);
+                forTable.setTopAnchor(table.getTable(),0.0);
+                forTable.setLeftAnchor(table.getTable(),0.0);
+                forTable.setRightAnchor(table.getTable(),0.0);
+                forTable.setBottomAnchor(table.getTable(),0.0);
+                forTable.getChildren().add(table.getTable());
                 break;
             }
             case 4: {
@@ -58,6 +66,12 @@ public class XMLFormControllerTable {
                 break;
             }
             case 5: {
+                tableCooker table = new tableCooker(smartHome.cooker);
+                forTable.setTopAnchor(table.getTable(),0.0);
+                forTable.setLeftAnchor(table.getTable(),0.0);
+                forTable.setRightAnchor(table.getTable(),0.0);
+                forTable.setBottomAnchor(table.getTable(),0.0);
+                forTable.getChildren().add(table.getTable());
                 break;
             }
             case 6: {

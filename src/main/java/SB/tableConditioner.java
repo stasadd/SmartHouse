@@ -16,6 +16,7 @@ public class tableConditioner  {
 
     public tableConditioner(Сonditioner ref){
         table = new TableView<Сonditioner>();
+        table.setEditable(true);
         TableColumn<Сonditioner,String> nameCol = new TableColumn<Сonditioner, String>("Name");
         TableColumn<Сonditioner,Integer> energyUsingCol = new TableColumn<Сonditioner, Integer>("EnergyUsing");
         TableColumn<Сonditioner,Integer> capacityCol = new TableColumn<Сonditioner, Integer>("Capacity");

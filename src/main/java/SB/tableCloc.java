@@ -28,6 +28,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.util.Date;
 
@@ -59,8 +61,19 @@ public class tableCloc {
         });
 
         energyUsingCol.setCellValueFactory(new PropertyValueFactory<Cloc, Integer>("energyUsing"));
-        capacityCol.setCellValueFactory(new PropertyValueFactory<Cloc, Integer>("capacity"));
 
+        capacityCol.setCellValueFactory(new PropertyValueFactory<Cloc, Integer>("capacity"));
+        capacityCol.setCellFactory(TextFieldTableCell.<Cloc,Integer> forTableColumn(new IntegerStringConverter()));
+        capacityCol.setOnEditCommit((CellEditEvent<Cloc, Integer> event) -> {
+            TablePosition<Cloc, Integer> pos = event.getTablePosition();
+
+            Integer newFullName = event.getNewValue();
+
+            int row = pos.getRow();
+            Cloc сloc = event.getTableView().getItems().get(row);
+
+            сloc.setCapacity(newFullName);
+        });
 
         DateCol.setCellValueFactory(new PropertyValueFactory<Cloc, Date>("clocDateNow"));
         AlarmCol.setCellValueFactory(new PropertyValueFactory<Cloc, Date>("clocAlarm"));
@@ -71,4 +84,8 @@ public class tableCloc {
     }
 
     public TableView<Cloc> getTable(){return this.table;}
+
+    public static <S> Callback<TableColumn<S,String>, TableCell<S,String>> forTableColumn(DefaultStringConverter defaultStringConverter) {
+        return forTableColumn(new DefaultStringConverter());
+    }
 }

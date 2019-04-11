@@ -19,7 +19,7 @@ public class SmartHome {
         load();
     }
 
-    private void load() {
+    public void load() {
         if(new File(devicesDir + "\\washing.ser").exists()) {
             try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(devicesDir + "\\washing.ser"))) {
                 washingMachine = (WashingMachine) ois.readObject();
@@ -49,7 +49,7 @@ public class SmartHome {
 
     }
 
-    private void save() {
+    public void save() {
 
         checkDirExists(devicesDir);
 

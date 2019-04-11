@@ -103,7 +103,7 @@ public class XMLFormController {
     }
 
     public void btnShowTurnoff(ActionEvent actionEvent){
-
+        smartHome.load();
     }
 
     private void loadTable(String title) throws IOException {

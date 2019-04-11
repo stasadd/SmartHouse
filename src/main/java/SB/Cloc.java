@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Cloc implements Serializable {
     private String name;
-    private Date clocDateNow;
+    private transient Date clocDateNow;
     private Date clocAlarm;
     private int energyUsing;
     private int capacity;

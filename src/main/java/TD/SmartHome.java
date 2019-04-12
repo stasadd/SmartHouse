@@ -25,7 +25,7 @@ public class SmartHome {
             while (true) {
                 try{
                     save();
-                    Thread.sleep(15000);
+                    Thread.sleep(30000);
                 }
                 catch(InterruptedException e){
                     System.out.println("runnable error");

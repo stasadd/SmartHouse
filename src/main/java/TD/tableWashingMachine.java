@@ -50,6 +50,17 @@ public class tableWashingMachine {
 
 
         capacityCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("capacity"));
+        capacityCol.setCellFactory(TextFieldTableCell.<WashingMachine,Integer> forTableColumn(new IntegerStringConverter()));
+        capacityCol.setOnEditCommit((TableColumn.CellEditEvent<WashingMachine, Integer> event) -> {
+            TablePosition<WashingMachine, Integer> pos = event.getTablePosition();
+
+            Integer newFullName = event.getNewValue();
+
+            int row = pos.getRow();
+            WashingMachine washingMachine = event.getTableView().getItems().get(row);
+
+            washingMachine.setCapacity(newFullName);
+        });
 
         energyUsingCol.setCellValueFactory(new PropertyValueFactory<WashingMachine, Integer>("energyUsing"));
         energyUsingCol.setCellFactory(TextFieldTableCell.<WashingMachine,Integer> forTableColumn(new IntegerStringConverter()));

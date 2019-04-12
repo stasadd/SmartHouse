@@ -14,23 +14,6 @@ public class WashingMachine implements Serializable {
     private double width;
     private double thickness;
 
-    private transient Runnable myRunnable = new Runnable(){
-        @Override
-        public void run() {
-            while (true) {
-                try{
-                    setEnergyUsing(getCapacity());
-                    Thread.sleep(5000);
-                }
-                catch(InterruptedException e){
-                    System.out.println("runnable error");
-                }
-            }
-        }
-    };
-
-    public transient Thread thread = new Thread(myRunnable);
-
     public WashingMachine() {
         this.name = "";
         this.capacity = 0;
@@ -43,8 +26,7 @@ public class WashingMachine implements Serializable {
         this.width = 0;
         this.thickness = 0;
 
-        thread.setDaemon(true);
-        thread.start();
+        threadCreate();
     }
 
     public WashingMachine(String name, int capacity, int maxWeightOfThings, int waterUsing, int countOfPrograms, double mashineWeight, double height, double width, double thickness) {
@@ -59,17 +41,16 @@ public class WashingMachine implements Serializable {
         this.width = width;
         this.thickness = thickness;
 
-        thread.setDaemon(true);
-        thread.start();
+        threadCreate();
     }
 
     public void threadCreate() {
-        myRunnable = new Runnable(){
+        Runnable myRunnable = new Runnable(){
             @Override
             public void run() {
                 while (true) {
                     try{
-                        setEnergyUsing(getCapacity());
+                        increaseEnergyUsing(getCapacity());
                         Thread.sleep(5000);
                     }
                     catch(InterruptedException e){
@@ -79,7 +60,7 @@ public class WashingMachine implements Serializable {
             }
         };
 
-        thread = new Thread(myRunnable);
+        Thread thread = new Thread(myRunnable);
 
         thread.setDaemon(true);
         thread.start();
@@ -107,6 +88,10 @@ public class WashingMachine implements Serializable {
 
     public void setEnergyUsing(int energyUsing) {
         this.energyUsing = energyUsing;
+    }
+
+    public void increaseEnergyUsing(int capacity) {
+        this.energyUsing += capacity;
     }
 
     public int getMaxWeightOfThings() {
